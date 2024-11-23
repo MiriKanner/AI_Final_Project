@@ -4,10 +4,11 @@ import  GeminiService  from '../services/geminiServices.js';
 export const checkUrl = async (req, res) => {
     console.log('check url')
     const { url } = req.body;
+    console.log(url)
     try {
         // קריאה ל-VirusTotal
         const virusResult = await checkUrlWithVirusTotal(url);
-
+        console.log(virusResult)
         // שליחת התוצאה ל-Gemini AI
         const geminiResult = await GeminiService.analyze(virusResult);
 
