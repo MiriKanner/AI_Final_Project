@@ -1,14 +1,14 @@
-import  GeminiService  from '../services/geminiServices.js';
+import GeminiService from '../services/geminiServices.js';
 
 export const checkStory = async (req, res) => {
-    console.log('check story')
-
+    console.log('check story');
     const { story } = req.body;
     try {
-        // שליחת הסיפור ל-Gemini AI לניתוח
-        console.log('try gemini')
-        const geminiResult = await GeminiService.analyze({ story });
-        console.log('wow gemini')
+        // המרת הסיפור למחרוזת טקסט פשוטה
+        const formattedStory = `Analyze the following story:\n\n${story}`;
+
+        // שליחת הסיפור ל-Gemini
+        const geminiResult = await GeminiService.analyze(formattedStory);
 
         // החזרת תשובה ללקוח
         res.json({ message: 'Story analyzed successfully', data: geminiResult });
