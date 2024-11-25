@@ -14,3 +14,4 @@ const AnalysisResult = ({ data }) => {
         </div>
     );
 };
+export default AnalysisResult;
