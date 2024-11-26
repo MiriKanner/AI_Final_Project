@@ -1,10 +1,10 @@
 import React from "react";
+import URLUpload from "../components/URLUpload";
 
 function URLAnalysis() {
   return (
-    <div>
-      <h2>Analyze URL</h2>
-      <p>Feature coming soon!</p>
+    <div className="page url-analysis-page">
+      <URLUpload />
     </div>
   );
 }

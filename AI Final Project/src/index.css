@@ -98,3 +98,48 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.url-upload {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.url-upload form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.url-upload input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  flex-grow: 1;
+}
+
+.url-upload button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.url-upload button:hover {
+  background-color: #0056b3;
+}
+
+.error {
+  color: red;
+}
+
+.analysis-result {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}

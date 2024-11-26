@@ -12,7 +12,7 @@ function App() {
     <Router>
       <header className="app-header">
         <h1>Email Phishing Analyzer</h1>
-        <nav>
+        <nav className="app-nav">
           <Link to="/">Home</Link>
           <Link to="/email-analysis">Analyze Email</Link>
           <Link to="/file-analysis">Analyze File</Link>
@@ -20,7 +20,7 @@ function App() {
           <Link to="/extensions">Our Extensions</Link>
         </nav>
       </header>
-      <main>
+      <main className="app-main">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/email-analysis" element={<EmailAnalysis />} />
@@ -29,6 +29,9 @@ function App() {
           <Route path="/extensions" element={<Extensions />} />
         </Routes>
       </main>
+      <footer className="app-footer">
+        <p>© 2024 Email Phishing Analyzer. All rights reserved.</p>
+      </footer>
     </Router>
   );
 }
