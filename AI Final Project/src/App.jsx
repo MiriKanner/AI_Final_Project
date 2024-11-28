@@ -5,6 +5,7 @@ import EmailAnalysis from "./pages/EmailAnalysis";
 import FileAnalysis from "./pages/FileAnalysis";
 import URLAnalysis from "./pages/URLAnalysis";
 import Extensions from "./pages/Extensions";
+import Tips from "./pages/Tips";
 import "./App.css";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Link to="/file-analysis">Analyze File</Link>
           <Link to="/url-analysis">Analyze URL</Link>
           <Link to="/extensions">Our Extensions</Link>
+          <Link to="/tips">Tips</Link>
         </nav>
       </header>
       <main className="app-main">
@@ -27,6 +29,7 @@ function App() {
           <Route path="/file-analysis" element={<FileAnalysis />} />
           <Route path="/url-analysis" element={<URLAnalysis />} />
           <Route path="/extensions" element={<Extensions />} />
+          <Route path="/tips" element={<Tips />} />
         </Routes>
       </main>
       <footer className="app-footer">

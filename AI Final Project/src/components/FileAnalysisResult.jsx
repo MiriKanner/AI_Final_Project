@@ -1,62 +1,88 @@
 import React from "react";
+import { Pie } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  ArcElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+// Register components for Chart.js
+ChartJS.register(CategoryScale, LinearScale, ArcElement, Tooltip, Legend);
 
 const FileAnalysisResult = ({ data }) => {
-    if (!data) {
-        return null; // לא להציג כלום אם אין נתונים
-    }
+  if (!data) {
+    return null;
+  }
 
-    const { virusTotalData, geminiAnalysis } = data;
+  const { virusTotalData, geminiAnalysis } = data;
 
-    return (
-        <div className="file-analysis-container">
-            <h2>File Analysis Result</h2>
+  const chartData = {
+    labels: ["Positive", "Negative", "Neutral"],
+    datasets: [
+      {
+        label: "Analysis Results",
+        data: virusTotalData
+          ? [
+              virusTotalData.positive || 0,
+              virusTotalData.negative || 0,
+              virusTotalData.neutral || 0,
+            ]
+          : [0, 0, 0],
+        backgroundColor: ["#dc3545", "#28a745", "#ffc107"],
+      },
+    ],
+  };
 
-            <div className="analysis-section">
-                <h3 className="section-header">VirusTotal Analysis</h3>
-                <ul className="result-list">
-                    <li>
-                        <strong>File ID:</strong>{" "}
-                        <span className="result-value">{virusTotalData?.id || "N/A"}</span>
-                    </li>
-                    <li>
-                        <strong>File Type:</strong>{" "}
-                        <span className="result-value">{virusTotalData?.type || "N/A"}</span>
-                    </li>
-                    <li>
-                        <strong>Analysis Link:</strong>{" "}
-                        {virusTotalData?.analysisLink ? (
-                            <a
-                                href={virusTotalData.analysisLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="analysis-link"
-                            >
-                                View on VirusTotal
-                            </a>
-                        ) : (
-                            "N/A"
-                        )}
-                    </li>
-                </ul>
-            </div>
+  const chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "VirusTotal Analysis Results",
+      },
+    },
+  };
 
-            <div className="analysis-section">
-                <h3 className="section-header">Gemini Analysis</h3>
-                <p>
-                    <strong>Summary:</strong>{" "}
-                    <span className="result-value">{geminiAnalysis?.summary || "N/A"}</span>
-                </p>
-                <p>
-                    <strong>Risk Evaluation:</strong>{" "}
-                    <span className="result-value">{geminiAnalysis?.riskEvaluation || "N/A"}</span>
-                </p>
-                <p>
-                    <strong>Advice:</strong>{" "}
-                    <span className="result-value">{geminiAnalysis?.advice || "N/A"}</span>
-                </p>
-            </div>
-        </div>
-    );
+  return (
+    <div className="file-analysis-container">
+      <h2>File Analysis Result</h2>
+      <div className="analysis-section">
+        <h3 className="section-header">VirusTotal Analysis</h3>
+        <ul className="result-list">
+          <li>
+            <strong>File ID:</strong>{" "}
+            <span className="result-value">{virusTotalData?.id || "N/A"}</span>
+          </li>
+          <li>
+            <strong>File Type:</strong>{" "}
+            <span className="result-value">{virusTotalData?.type || "N/A"}</span>
+          </li>
+          <li>
+            <strong>Analysis Link:</strong>{" "}
+            {virusTotalData?.analysisLink ? (
+              <a
+                href={virusTotalData.analysisLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="analysis-link"
+              >
+                View on VirusTotal
+              </a>
+            ) : (
+              "N/A"
+            )}
+          </li>
+        </ul>
+        <Pie data={chartData} options={chartOptions} />
+      </div>
+    </div>
+  );
 };
 
 export default FileAnalysisResult;

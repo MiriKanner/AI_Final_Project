@@ -19,6 +19,26 @@ function Extensions() {
         <strong>How to use:</strong> Install the extensions, and you'll see buttons appear directly
         in your Gmail or file explorer.
       </p>
+
+      {/* Section for images */}
+      <div className="extensions-images">
+        <img
+          src="C:\Users\The user\AI_Final_Project-1\AI Final Project\IMG.jpg"
+          alt="Email Analyzer Extension"
+          className="extension-image"
+        />
+        
+        <img
+          src="C:\Users\The user\AI_Final_Project-1\AI Final Project\צילום מסך 2024-11-29 005625.png"
+          alt="File Analyzer Extension"
+          className="extension-image"
+        />
+        <img
+          src="C:\Users\The user\AI_Final_Project-1\AI Final Project\צילום מסך 2024-11-29 005625.png"
+          alt="URL Analyzer Extension"
+          className="extension-image"
+        />
+      </div>
     </div>
   );
 }
