@@ -4,7 +4,7 @@ import { validateUrl } from '../middleware/inputValidation.js';
 
 const router = express.Router();
 
-// בדיקות קלט ל-URL לפני הטיפול בבקשה
-router.post('', validateUrl, checkUrl);
+// הגדרת נתיב לניתוח URL
+router.post('/analyze', validateUrl, checkUrl);
 
 export default router;

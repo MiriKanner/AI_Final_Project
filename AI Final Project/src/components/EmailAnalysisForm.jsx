@@ -11,12 +11,13 @@ const EmailAnalysisForm = () => {
         try {
             const response = await axios.post('http://localhost:5000/email/analyze', { emailContent });
             const rawResult = response.data.data;
-            
-            // עיבוד הפלט למבנה קריא
+
+            // שימוש ישיר במבנה הנתונים המוחזר
             const formattedResult = {
-                phishingLikelihood: parseInt(rawResult.match(/Phishing Likelihood: (\d+)%/)[1]),
-                summary: rawResult.match(/- \*\*Summary:\*\*([\s\S]*?)- \*\*Advice:\*\*/)?.[1]?.trim(),
-                advice: rawResult.match(/- \*\*Advice:\*\*([\s\S]*)/)?.[1]?.trim(),
+                phishingLikelihood: rawResult.phishingLikelihood || 0,
+                summary: rawResult.summary || 'No summary provided.',
+                advice: rawResult.advice || 'No advice provided.',
+                riskFactors: rawResult.riskFactors || {},
             };
 
             setResult(formattedResult);
@@ -38,7 +39,7 @@ const EmailAnalysisForm = () => {
                 />
                 <button type="submit">Analyze</button>
             </form>
-            <EmailResult result={result} />
+            {result && <EmailResult result={result} />}
         </div>
     );
 };

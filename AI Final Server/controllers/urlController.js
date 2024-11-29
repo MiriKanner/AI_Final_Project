@@ -2,9 +2,13 @@ import { checkUrlWithVirusTotal } from '../services/virusTotalServices.js';
 import GeminiService from '../services/geminiServices.js';
 
 export const checkUrl = async (req, res) => {
-    const { url } = req.body;
-
     try {
+        const { url } = req.body;
+
+        if (!url) {
+            return res.status(400).json({ success: false, message: 'URL is required' });
+        }
+
         // קבלת תוצאות מ-VirusTotal
         const virusResult = await checkUrlWithVirusTotal(url);
 
@@ -29,37 +33,24 @@ ${rawAnalysis}
         // שליחת פרומפט ל-Gemini
         const geminiResult = await GeminiService.analyze(geminiPrompt);
 
-        // עיבוד הפלט מ-Gemini
-        const formattedResponse = formatGeminiResponse(geminiResult.analysis, url, undetectedPercentage);
+        if (!geminiResult.success) {
+            throw new Error('Gemini analysis failed');
+        }
 
-        // החזרת תשובה ללקוח
-        res.json({
-            message: 'URL checked successfully',
-            data: formattedResponse,
-        });
+        // עיבוד התוצאה
+        const formattedResponse = {
+            phishingLikelihood: parseFloat(undetectedPercentage),
+            summary: geminiResult.analysis.match(/Summary:\s*(.*)/)?.[1] || "No summary provided.",
+            advice: geminiResult.analysis.match(/Advice:\s*(.*)/)?.[1] || "No advice provided.",
+            riskFactors: {
+                "Undetected Scans": undetectedPercentage,
+                "Detected Threats": (100 - undetectedPercentage).toFixed(2),
+            },
+        };
+
+        res.json({ success: true, data: formattedResponse });
     } catch (error) {
-        res.status(500).json({
-            message: 'Error checking URL',
-            error: error.message,
-        });
+        console.error("Error analyzing URL:", error.message);
+        res.status(500).json({ success: false, message: "Error analyzing URL" });
     }
-};
-
-const formatGeminiResponse = (geminiAnalysis, url, undetectedPercentage) => {
-    let additionalNote = '';
-    if (undetectedPercentage > 20) {
-        additionalNote = `⚠️ Note: A significant portion of scanners (${undetectedPercentage}%) were unable to classify the site. Exercise caution.`;
-    }
-
-    return `
-### Analysis for: ${url}
-
-${geminiAnalysis}
-
-${additionalNote}
-
----
-
-**Note:** The safety rating is based on VirusTotal's analysis and does not guarantee 100% safety. Always practice secure browsing habits.
-    `;
 };
