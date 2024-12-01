@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 const API_KEY = process.env.VIRUS_TOTAL_API_KEY || '7d9ed99294e89f13d5eb4905b8f901344bb67906652393d5d79fed44a7ef02be';
-
+/**
+ * Service for interacting with VirusTotal API to analyze URLs and files for potential threats.
+ */
 export const checkUrlWithVirusTotal = async (url) => {
     try {
         const response = await axios.post(

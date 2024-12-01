@@ -7,12 +7,11 @@ import {
     Legend,
 } from 'chart.js';
 
-// Register ChartJS components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const EmailResult = ({ result }) => {
+    
     if (!result) return null;
-
     const { phishingLikelihood, summary, advice, riskFactors } = result;
 
     const chartData = {

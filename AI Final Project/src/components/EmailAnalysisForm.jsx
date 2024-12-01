@@ -11,8 +11,6 @@ const EmailAnalysisForm = () => {
         try {
             const response = await axios.post('http://localhost:5000/email/analyze', { emailContent });
             const rawResult = response.data.data;
-
-            // שימוש ישיר במבנה הנתונים המוחזר
             const formattedResult = {
                 phishingLikelihood: rawResult.phishingLikelihood || 0,
                 summary: rawResult.summary || 'No summary provided.',

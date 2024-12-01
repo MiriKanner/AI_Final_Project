@@ -1,5 +1,4 @@
 import React from "react";
-
 function Extensions() {
   return (
     <div className="page extensions-page">
@@ -20,21 +19,20 @@ function Extensions() {
         in your Gmail or file explorer.
       </p>
 
-      {/* Section for images */}
+      
       <div className="extensions-images">
         <img
-          src="C:\Users\The user\AI_Final_Project-1\AI Final Project\IMG.jpg"
+          src="/assets/img1.png"
           alt="Email Analyzer Extension"
           className="extension-image"
         />
-        
         <img
-          src="C:\Users\The user\AI_Final_Project-1\AI Final Project\צילום מסך 2024-11-29 005625.png"
+          src="/assets/img2.png"
           alt="File Analyzer Extension"
           className="extension-image"
         />
         <img
-          src="C:\Users\The user\AI_Final_Project-1\AI Final Project\צילום מסך 2024-11-29 005625.png"
+          src="/assets/img3.png"
           alt="URL Analyzer Extension"
           className="extension-image"
         />
@@ -42,5 +40,4 @@ function Extensions() {
     </div>
   );
 }
-
 export default Extensions;

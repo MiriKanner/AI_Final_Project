@@ -1,4 +1,8 @@
-/* Global Styles */
+
+@import "primereact/resources/themes/saga-blue/theme.css"; 
+@import "primereact/resources/primereact.min.css"; 
+@import "primeicons/primeicons.css"; 
+
 body, html {
   margin: 0;
   padding: 0;
@@ -15,7 +19,6 @@ body, html {
   min-height: 100vh;
 }
 
-/* Header Navigation */
 .app-header {
   background: rgba(15, 32, 39, 0.9);
   backdrop-filter: blur(5px);
@@ -196,7 +199,7 @@ body {
   padding: 20px;
 }
 
-/* עיצוב לתמונות */
+
 .extensions-images {
   margin-top: 20px;
   display: flex;
@@ -205,19 +208,19 @@ body {
 }
 
 .extension-image {
-  width: 150px; /* או התאמה לגודל התמונה הרצוי */
-  height: auto; /* שמירה על פרופורציות */
-  border-radius: 8px; /* פינות מעוגלות */
+  width: 300px;
+  height: auto; 
+  border-radius: 8px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* אפקטי ריחוף */
+
 .extension-image:hover {
   transform: scale(1.1);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
-/* עיצוב לעמוד הטיפים */
+
 .tips-page {
   padding: 20px;
   text-align: center;
@@ -246,7 +249,6 @@ body {
 }
 
 button {
-  margin-top: 20px;
   padding: 10px 20px;
   background: #00d4ff;
   color: #1a1a1a;
@@ -266,7 +268,7 @@ button:active {
   background: #005f8a;
   transform: scale(0.95);
 }
-/* Tips Page Styles */
+
 .tips-container {
   text-align: center;
   padding: 20px;
@@ -291,7 +293,6 @@ button:active {
 }
 
 button {
-  margin-top: 20px;
   padding: 10px 20px;
   background: #00d4ff;
   border: none;
@@ -306,7 +307,7 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* Analysis Results Styles */
+
 .analysis-results ul {
   list-style: none;
   padding: 0;
@@ -320,7 +321,7 @@ button:hover {
 }
 
 .risk-low {
-  background: #28a745; /* Green */
+  background: #28a745; 
 }
 
 .risk-medium {
@@ -429,3 +430,165 @@ canvas {
 .analysis-result li {
   margin-bottom: 10px;
 }
+.tips-page {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+h2 {
+  /* color: #0078d7; */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.tip-box {
+  padding: 20px;
+
+  border-radius: 10px;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.tip-box h3 {
+  color: #005bb5;
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+.tip-box p {
+  font-size: 1em;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.tip-box a {
+  color: #0078d7;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.tip-box a:hover {
+  text-decoration: underline;
+}
+
+.next-tip-button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: #0078d7;
+  
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.next-tip-button:hover {
+  background-color: #005bb5;
+}
+body {
+  background-color: #0e1e25;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+h1, h2 {
+  color: #00d1b2;
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.custom-choose-btn {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.custom-upload-btn {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.custom-cancel-btn {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.p-button-rounded {
+  border-radius: 50%;
+}
+
+.p-button-outlined {
+  border-width: 2px;
+}
+
+.p-button p-component{
+  margin-top:0%;
+}
+.analysis-result-container {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  /* background-color: #f8f9fa; */
+  font-family: Arial, sans-serif;
+  margin-top: 20px;
+}
+
+.analysis-header {
+  font-size: 1.8rem;
+  color: #eaebed;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section-header {
+  font-size: 1.4rem;
+  color: #f0f1f2;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.section-content p {
+  margin: 5px 0;
+}
+
+.link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.notes {
+  font-style: italic;
+  margin-top: 15px;
+  color:white;
+}
+

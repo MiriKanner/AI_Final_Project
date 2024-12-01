@@ -9,15 +9,12 @@ export const checkUrl = async (req, res) => {
             return res.status(400).json({ success: false, message: 'URL is required' });
         }
 
-        // קבלת תוצאות מ-VirusTotal
         const virusResult = await checkUrlWithVirusTotal(url);
 
-        // חישוב אחוז ה-Undetected
         const totalEngines = Object.keys(virusResult).length;
         const undetectedCount = Object.values(virusResult).filter(result => result.category === 'undetected').length;
         const undetectedPercentage = ((undetectedCount / totalEngines) * 100).toFixed(2);
 
-        // יצירת פרומפט ל-Gemini
         const rawAnalysis = JSON.stringify(virusResult, null, 2);
         const geminiPrompt = `
 You are an AI responsible for analyzing VirusTotal results for a URL. Your tasks are as follows:
@@ -30,14 +27,12 @@ The VirusTotal analysis data is as follows:
 ${rawAnalysis}
         `;
 
-        // שליחת פרומפט ל-Gemini
         const geminiResult = await GeminiService.analyze(geminiPrompt);
 
         if (!geminiResult.success) {
             throw new Error('Gemini analysis failed');
         }
 
-        // עיבוד התוצאה
         const formattedResponse = {
             phishingLikelihood: parseFloat(undetectedPercentage),
             summary: geminiResult.analysis.match(/Summary:\s*(.*)/)?.[1] || "No summary provided.",
@@ -47,7 +42,6 @@ ${rawAnalysis}
                 "Detected Threats": (100 - undetectedPercentage).toFixed(2),
             },
         };
-
         res.json({ success: true, data: formattedResponse });
     } catch (error) {
         console.error("Error analyzing URL:", error.message);

@@ -18,14 +18,7 @@ export const validateUrl = (req, res, next) => {
     next();
 };
 
-// Middleware לאימות Story
-export const validateStory = (req, res, next) => {
-    const { error } = storySchema.validate(req.body);
-    if (error) {
-        return res.status(400).json({ error: error.details[0].message });
-    }
-    next();
-};
+
 const emailContentSchema = Joi.object({
     emailContent: Joi.string().min(20).required(),
 });

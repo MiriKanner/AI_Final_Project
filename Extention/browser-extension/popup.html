@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Set the character encoding for the document to UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Enable responsive design for different device widths -->
+    <title>Phishing Analyzer</title> <!-- The title of the webpage -->
+    <link rel="stylesheet" href="styles.css"> <!-- Link to the external CSS stylesheet -->
+</head>
+<body>
+    <div class="container"> <!-- A wrapper div to structure the content -->
+        <h1>Phishing Analyzer</h1> <!-- Main heading of the page -->
+        <textarea id="emailContent" placeholder="Paste the email content here"></textarea> 
+        <!-- Text area for users to paste the email content to be analyzed -->
+        <button id="analyzeButton">Analyze</button> 
+        <!-- A button to trigger the analysis process -->
+        <div id="result"> 
+            <!-- A container for displaying the analysis results -->
+            <div id="loading" class="hidden">Analyzing...</div> 
+            <!-- A hidden loading message to be displayed while analysis is in progress -->
+            <div id="analysisResult"></div> 
+            <!-- Placeholder for dynamically inserting the analysis results -->
+        </div>
+    </div>
+    <script src="popup.js"></script> <!-- Include the JavaScript file that contains the analysis logic -->
+</body>
+</html>

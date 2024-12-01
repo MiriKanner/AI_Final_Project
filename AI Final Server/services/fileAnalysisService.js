@@ -2,13 +2,24 @@ import axios from "axios";
 import fs from "fs";
 import FormData from "form-data";
 import GeminiService from "./geminiServices.js";
+/**
+ * Service for analyzing files for potential threats.
+ * This service interfaces with VirusTotal and other analysis providers to evaluate file safety.
+ */
 
 const API_KEY = "6cc3d3581f7bdf7754539df7242b3962b1a3618c419284223c74785a551c841a";
 
 class FileAnalysisService {
+       /**
+     * Analyzes the provided file.
+     * @param {Buffer} fileBuffer - The file data as a buffer.
+     * @param {string} fileName - The name of the file.
+     * @returns {Promise<Object>} - Analysis results.
+     * @throws {Error} - Throws an error if the analysis fails.
+     */
     static async analyzeFile(filePath) {
         try {
-            // שליחת הקובץ ל-VirusTotal
+             // Perform analysis using VirusTotal
             const formData = new FormData();
             formData.append("file", fs.createReadStream(filePath));
 
@@ -29,7 +40,6 @@ class FileAnalysisService {
                 analysisLink: response.data.data.links?.self || "No link provided",
             };
 
-            // יצירת פרומפט ל-Gemini
             const prompt = `
 You are an AI specialized in file safety analysis. Analyze the following file metadata:
 - File ID: ${virusTotalResult.id}
@@ -47,11 +57,7 @@ Your response should be structured as follows:
 - Advice: ...
             `;
 
-            // שליחת הפרומפט ל-Gemini
             const geminiAnalysis = await GeminiService.analyze(prompt);
-            console.log(geminiAnalysis,"😒😒");
-            console.log(virusTotalResult,"😒🫁🫁🫁😒");
-
             if (!geminiAnalysis.success) {
                 throw new Error("Failed to analyze file content with Gemini.");
             }

@@ -1,6 +1,15 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+/**
+ * Service for interacting with Google's Gemini AI.
+ * This service provides generative content analysis for email and file data.
+ */
 
 class GeminiService {
+      /**
+     * Analyzes the provided prompt using Gemini AI.
+     * @param {string} prompt - The input prompt for the AI model.
+     * @returns {Promise<Object>} - The analysis result.
+     */
     static async analyze(prompt) {
         const apiKey = process.env.GOOGLE_GEN_AI_KEY || 'AIzaSyBbQqiH9nS0l0kinVtEQ9UF4t6LSzxR4rY';
 

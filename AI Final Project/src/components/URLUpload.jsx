@@ -9,6 +9,7 @@ const URLUpload = () => {
     const handleAnalyze = async () => {
         try {
             const response = await axios.post("http://localhost:5000/url/analyze", { url });
+            console.log("❤️❤️❤️",response.data.data);
             setResult(response.data.data);
         } catch (error) {
             console.error("Error analyzing URL:", error.response?.data || error.message);
